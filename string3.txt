@@ -1,0 +1,251 @@
+
+Here are the Java programs to perform the tasks you requested:
+
+1. Write a Program to Remove Duplicates from a String.
+
+To remove duplicate characters from a string, you can use a Set since it automatically handles uniqueness.
+
+Example:
+
+java
+Copy code
+import java.util.*;
+
+public class RemoveDuplicates {
+    public static void main(String[] args) {
+        String input = "programming";
+        Set<Character> seenChars = new LinkedHashSet<>();
+        
+        for (char c : input.toCharArray()) {
+            seenChars.add(c);
+        }
+        
+        StringBuilder result = new StringBuilder();
+        for (char c : seenChars) {
+            result.append(c);
+        }
+        
+        System.out.println("String after removing duplicates: " + result);
+    }
+}
+Explanation:
+
+LinkedHashSet is used to maintain the insertion order while removing duplicates.
+Each character from the string is added to the set, ensuring that duplicates are ignored.
+2. Write a Program to Print Duplicate Characters from the String.
+
+This program finds and prints the duplicate characters in the string.
+
+Example:
+
+java
+Copy code
+import java.util.*;
+
+public class PrintDuplicates {
+    public static void main(String[] args) {
+        String input = "programming";
+        Map<Character, Integer> charCount = new HashMap<>();
+        
+        // Count occurrences of each character
+        for (char c : input.toCharArray()) {
+            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+        }
+        
+        System.out.print("Duplicate characters: ");
+        for (Map.Entry<Character, Integer> entry : charCount.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.print(entry.getKey() + " ");
+            }
+        }
+    }
+}
+Explanation:
+
+A HashMap is used to count the occurrences of each character.
+Characters that appear more than once are printed as duplicates.
+3. Write a Program to Check if "2552" is a Palindrome or Not.
+
+A palindrome is a word or number that reads the same backward as forward.
+
+Example:
+
+java
+Copy code
+public class PalindromeCheck {
+    public static void main(String[] args) {
+        String str = "2552";
+        String reverse = new StringBuilder(str).reverse().toString();
+        
+        if (str.equals(reverse)) {
+            System.out.println(str + " is a palindrome.");
+        } else {
+            System.out.println(str + " is not a palindrome.");
+        }
+    }
+}
+Explanation:
+
+The string is reversed using StringBuilder's reverse() method and compared to the original string.
+4. Write a Program to Count the Number of Consonants, Vowels, Special Characters in a String.
+
+The program counts the number of vowels, consonants, and special characters in a given string.
+
+Example:
+
+java
+Copy code
+public class CountCharacters {
+    public static void main(String[] args) {
+        String input = "Hello, World!";
+        int vowels = 0, consonants = 0, specialChars = 0;
+        
+        for (char c : input.toCharArray()) {
+            if (Character.isLetter(c)) {
+                if ("AEIOUaeiou".indexOf(c) != -1) {
+                    vowels++;
+                } else {
+                    consonants++;
+                }
+            } else if (!Character.isDigit(c)) {
+                specialChars++;
+            }
+        }
+        
+        System.out.println("Vowels: " + vowels);
+        System.out.println("Consonants: " + consonants);
+        System.out.println("Special characters: " + specialChars);
+    }
+}
+Explanation:
+
+It checks whether each character is a letter and whether it's a vowel or consonant.
+Special characters are counted if the character is not a digit or letter.
+5. Write a Program to Implement Anagram Checking with Least Inbuilt Methods Being Used.
+
+An anagram is a word or phrase formed by rearranging the letters of another.
+
+Example:
+
+java
+Copy code
+import java.util.*;
+
+public class AnagramCheck {
+    public static void main(String[] args) {
+        String str1 = "listen";
+        String str2 = "silent";
+        
+        char[] charArray1 = str1.toCharArray();
+        char[] charArray2 = str2.toCharArray();
+        
+        Arrays.sort(charArray1);
+        Arrays.sort(charArray2);
+        
+        if (Arrays.equals(charArray1, charArray2)) {
+            System.out.println(str1 + " and " + str2 + " are anagrams.");
+        } else {
+            System.out.println(str1 + " and " + str2 + " are not anagrams.");
+        }
+    }
+}
+Explanation:
+
+Both strings are converted to character arrays and sorted.
+The sorted arrays are compared to determine if the strings are anagrams.
+6. Write a Program to Implement Pangram Checking with Least Inbuilt Methods Being Used.
+
+A pangram is a sentence that contains every letter of the alphabet at least once.
+
+Example:
+
+java
+Copy code
+public class PangramCheck {
+    public static void main(String[] args) {
+        String str = "The quick brown fox jumps over the lazy dog";
+        str = str.toLowerCase().replaceAll("[^a-z]", "");  // Remove non-alphabetic characters
+        
+        boolean isPangram = true;
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (str.indexOf(c) == -1) {
+                isPangram = false;
+                break;
+            }
+        }
+        
+        if (isPangram) {
+            System.out.println("The sentence is a pangram.");
+        } else {
+            System.out.println("The sentence is not a pangram.");
+        }
+    }
+}
+Explanation:
+
+All non-alphabet characters are removed, and the string is converted to lowercase.
+It checks if each letter from a to z is present in the string.
+7. Write a Program to Find if String Contains All Unique Characters.
+
+This program checks if a string contains all unique characters.
+
+Example:
+
+java
+Copy code
+public class UniqueCharacters {
+    public static void main(String[] args) {
+        String str = "abcdef";
+        
+        Set<Character> charSet = new HashSet<>();
+        
+        for (char c : str.toCharArray()) {
+            if (!charSet.add(c)) {
+                System.out.println("The string does not contain all unique characters.");
+                return;
+            }
+        }
+        
+        System.out.println("The string contains all unique characters.");
+    }
+}
+Explanation:
+
+A HashSet is used to track the characters.
+If any character cannot be added (i.e., it's already in the set), the string does not contain all unique characters.
+8. Write a Program to Find the Maximum Occurring Character in a String.
+
+This program finds the most frequent character in the string.
+
+Example:
+
+java
+Copy code
+import java.util.*;
+
+public class MaxOccurringCharacter {
+    public static void main(String[] args) {
+        String str = "programming";
+        Map<Character, Integer> charCount = new HashMap<>();
+        
+        for (char c : str.toCharArray()) {
+            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+        }
+        
+        char maxChar = ' ';
+        int maxCount = 0;
+        
+        for (Map.Entry<Character, Integer> entry : charCount.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                maxChar = entry.getKey();
+            }
+        }
+        
+        System.out.println("Maximum occurring character: " + maxChar);
+    }
+}
+Explanation:
+
+A HashMap is used to count the frequency of each character.
+The character with the highest frequency is determined by iterating through the map.
